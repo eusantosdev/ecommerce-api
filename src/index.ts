@@ -24,6 +24,19 @@ app.get('/users/:id', (req: Request, res: Response) => {
     res.send(userId);
 });
 
+app.post('/users', (req: Request, res: Response) => {
+    const { nome, idade } = req.body;
+    const newUser = usuarios.push({
+        id: usuarios.length + 1,
+        nome: nome,
+        idade: idade
+    });
+    res.send({
+        message: 'Novo usuario criado!',
+        newUser
+    });
+})
+
 app.listen(3000, () => {
     console.log('Servidor rodando!');
 });
