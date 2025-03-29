@@ -6,6 +6,7 @@ let usuarios = [
     { 
         id: 1, 
         nome: 'João', 
+        email: 'joao@gmail.com',
         idade: 18 
     }
 ];
@@ -25,17 +26,26 @@ app.get('/users/:id', (req: Request, res: Response) => {
 });
 
 app.post('/users', (req: Request, res: Response) => {
-    const { nome, idade } = req.body;
+    let { nome, idade, email } = req.body;
     const newUser = usuarios.push({
         id: usuarios.length + 1,
         nome: nome,
+        email: email,
         idade: idade
     });
     res.send({
         message: 'Novo usuario criado!',
         newUser
     });
-})
+});
+
+app.delete('/users/:id', (req: Request, res: Response) => {
+    let userId = req.params.id;
+    usuarios.filter(user => user.id !== Number(userId));
+    res.send({
+        message: 'Usuario deletado!'
+    });
+});
 
 app.listen(3000, () => {
     console.log('Servidor rodando!');
