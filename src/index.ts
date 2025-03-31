@@ -8,13 +8,12 @@ type User = {
     id: number,
     nome: string,
     email: string,
-    idade: number
-}
+};
 
 let usuarios: User[] = [];
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('Hello World!');
+    res.send('Bem vindo!');
 });
 
 app.get('/users', (req: Request, res: Response) => {
@@ -28,12 +27,11 @@ app.get('/users/:id', (req: Request, res: Response) => {
 });
 
 app.post('/users', (req: Request, res: Response) => {
-    let { nome, email, idade } = req.body;
+    let { nome, email } = req.body;
     const newUser = {
         id: usuarios.length + 1,
         nome: nome,
         email: email,
-        idade: idade
     }
     usuarios.push(newUser);
     res.send({
@@ -43,21 +41,21 @@ app.post('/users', (req: Request, res: Response) => {
 
 app.put('/users/:id', (req: Request, res: Response) => {
     let { id } = req.params;
-    let user = req.body;
-    let userIndex = usuarios.findIndex((_user: User) => user.id === Number(id));
-    usuarios[userIndex].nome = user.nome;
-    usuarios[userIndex].email = user.email;
-    usuarios[userIndex].idade = user.idade;
+    let user = req.body as User;
+    let indexOfUser = usuarios.findIndex((_user: User) => user.id === Number(id));
+    usuarios[indexOfUser].nome = user.nome;
+    usuarios[indexOfUser].email = user.email;
     res.send({
         message: `Dados de usuario ${id} atualizados!`
-    })
-})
+    });
+});
 
 app.delete('/users/:id', (req: Request, res: Response) => {
     let { id } = req.params;
-    usuarios.filter(user => user.id !== Number(id));
+    let indexOfUser = usuarios.findIndex((_user: User) => _user.id === Number(id));
+    usuarios.splice(indexOfUser, 1);
     res.send({
-        message: 'Usuario deletado!'
+        message: `Usuario ${id} deletado!`
     });
 });
 
