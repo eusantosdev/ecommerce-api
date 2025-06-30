@@ -1,0 +1,6 @@
+# node_modules and dependency directories
+lib/
+node_modules/
+
+# secret files
+.env
