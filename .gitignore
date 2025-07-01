@@ -1,6 +1,8 @@
-# node_modules and dependency directories
-lib/
+# Node modules (dependências instaladas)
 node_modules/
 
-# secret files
+# Build do TypeScript
+lib/
+
+# Arquivos de ambiente
 .env
