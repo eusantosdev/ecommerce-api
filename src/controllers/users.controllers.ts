@@ -17,7 +17,7 @@ type User = {
 export class UsersControllers {
     static getAllUsers = (req: Request, res: Response) => {
         try {
-            res.status(201).send(users);
+            
         } catch (error) {
             console.log(`Error: ${error}`);
             res.status(500).send({
@@ -28,9 +28,8 @@ export class UsersControllers {
 
     static getUserById = (req: Request, res: Response) => {
         try {
-            let { id } = req.params;
-            let user = users.find(user => user.id === parseInt(id));
-            res.send(user);
+            //let { id } = req.params;
+            
         } catch (error) {
             console.log(`Erro: ${error}`);
             res.status(500).send({
