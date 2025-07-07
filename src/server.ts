@@ -12,5 +12,5 @@ connectDataBase();
 routes(app);
 
 app.listen(port, hostname, () => {
-    console.log(`Running server http://${hostname}:${port}/`);
+    console.log(`Listening on http://${hostname}:${port}/`);
 });

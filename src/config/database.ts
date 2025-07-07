@@ -3,19 +3,19 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export async function connectDataBase() {
+export function connectDataBase() {
     try {
         const connectionString = process.env.ATLAS_URI;
 
-        console.log('Connect to Database...');
-
         if (!connectionString) {
-            throw new Error('ATLAS_URI is not defined');
+            throw new Error(`${connectionString} is not defined`);
         }
-    
+
         mongoose.connect(connectionString, {
             dbName: 'ecommerce',
         });
+
+        console.log('Connect to Database...');
     
     } catch (error) {
         console.error(`Server Error: ${error}`);
