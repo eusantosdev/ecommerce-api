@@ -8,7 +8,7 @@ export function connectDataBase() {
         const connectionString = process.env.ATLAS_URI;
 
         if (!connectionString) {
-            throw new Error(`${connectionString} is not defined`);
+            throw new Error(`ATLAS_URI is not defined in te .env file`);
         }
 
         mongoose.connect(connectionString, {
